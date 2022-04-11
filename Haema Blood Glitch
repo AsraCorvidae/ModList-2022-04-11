@@ -1,5 +1,135 @@
+---- Minecraft Crash Report ----
+// Don't do that.
+
+Time: 2022-04-10, 1:06 a.m.
+Description: Initializing game
+
+java.lang.RuntimeException: Mixin transformation of net.minecraft.class_3304 failed
+	at Not Enough Crashes deobfuscated stack trace.(1.18.1+build.22)
+	at net.fabricmc.loader.impl.launch.knot.KnotClassDelegate.getPostMixinClassByteArray(KnotClassDelegate.java:252)
+	at net.fabricmc.loader.impl.launch.knot.KnotClassDelegate.tryLoadClass(KnotClassDelegate.java:150)
+	at net.fabricmc.loader.impl.launch.knot.KnotClassLoader.loadClass(KnotClassLoader.java:155)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:520)
+	at net.minecraft.client.MinecraftClient.<init>(MinecraftClient:504)
+	at net.minecraft.client.main.Main.main(Main:199)
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:568)
+	at net.fabricmc.loader.impl.game.minecraft.MinecraftGameProvider.launch(MinecraftGameProvider.java:416)
+	at net.fabricmc.loader.impl.launch.knot.Knot.launch(Knot.java:77)
+	at net.fabricmc.loader.impl.launch.knot.KnotClient.main(KnotClient.java:23)
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:568)
+	at org.multimc.onesix.OneSixLauncher.launchWithMainClass(OneSixLauncher.java:210)
+	at org.multimc.onesix.OneSixLauncher.launch(OneSixLauncher.java:245)
+	at org.multimc.EntryPoint.listen(EntryPoint.java:143)
+	at org.multimc.EntryPoint.main(EntryPoint.java:34)
+Caused by: org.spongepowered.asm.mixin.transformer.throwables.MixinTransformerError: An unexpected critical error was encountered
+	at org.spongepowered.asm.mixin.transformer.MixinProcessor.applyMixins(MixinProcessor.java:392)
+	at org.spongepowered.asm.mixin.transformer.MixinTransformer.transformClass(MixinTransformer.java:234)
+	at org.spongepowered.asm.mixin.transformer.MixinTransformer.transformClassBytes(MixinTransformer.java:202)
+	at net.fabricmc.loader.impl.launch.knot.KnotClassDelegate.getPostMixinClassByteArray(KnotClassDelegate.java:247)
+	... 20 more
+Caused by: org.spongepowered.asm.mixin.throwables.MixinApplyError: Mixin [continuity.mixins.json:ReloadableResourceManagerImplAccessor] from phase [DEFAULT] in config [continuity.mixins.json] from mod [continuity] FAILED during APPLY
+	at org.spongepowered.asm.mixin.transformer.MixinProcessor.handleMixinError(MixinProcessor.java:638)
+	at org.spongepowered.asm.mixin.transformer.MixinProcessor.handleMixinApplyError(MixinProcessor.java:589)
+	at org.spongepowered.asm.mixin.transformer.MixinProcessor.applyMixins(MixinProcessor.java:379)
+	... 23 more
+Caused by: org.spongepowered.asm.mixin.gen.throwables.InvalidAccessorException: No candidates were found matching field_36391:Lnet/minecraft/class_6860; in net/minecraft/class_3304 for continuity.mixins.json:ReloadableResourceManagerImplAccessor->@Accessor[FIELD_GETTER]::getActiveManager()Lnet/minecraft/class_6860; [INJECT Applicator Phase -> continuity.mixins.json:ReloadableResourceManagerImplAccessor -> Apply Accessors ->  -> Locate -> continuity.mixins.json:ReloadableResourceManagerImplAccessor->@Accessor[FIELD_GETTER]::getActiveManager()Lnet/minecraft/class_6860;]
+	at Not Enough Crashes deobfuscated stack trace.(1.18.1+build.22)
+	at org.spongepowered.asm.mixin.gen.AccessorInfo.findTarget(AccessorInfo.java:518)
+	at org.spongepowered.asm.mixin.gen.AccessorInfo.findTargetField(AccessorInfo.java:501)
+	at org.spongepowered.asm.mixin.gen.AccessorInfo.locate(AccessorInfo.java:475)
+	at org.spongepowered.asm.mixin.transformer.MixinTargetContext.generateAccessors(MixinTargetContext.java:1412)
+	at org.spongepowered.asm.mixin.transformer.MixinApplicatorStandard.applyAccessors(MixinApplicatorStandard.java:1061)
+	at org.spongepowered.asm.mixin.transformer.MixinApplicatorStandard.applyMixin(MixinApplicatorStandard.java:398)
+	at org.spongepowered.asm.mixin.transformer.MixinApplicatorStandard.apply(MixinApplicatorStandard.java:325)
+	at org.spongepowered.asm.mixin.transformer.TargetClassContext.apply(TargetClassContext.java:421)
+	at org.spongepowered.asm.mixin.transformer.TargetClassContext.applyMixins(TargetClassContext.java:403)
+	at org.spongepowered.asm.mixin.transformer.MixinProcessor.applyMixins(MixinProcessor.java:363)
+	... 23 more
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Thread: Render thread
+Stacktrace:
+	at net.fabricmc.loader.impl.launch.knot.KnotClassDelegate.getPostMixinClassByteArray(KnotClassDelegate.java:252)
+	at net.fabricmc.loader.impl.launch.knot.KnotClassDelegate.tryLoadClass(KnotClassDelegate.java:150)
+	at net.fabricmc.loader.impl.launch.knot.KnotClassLoader.loadClass(KnotClassLoader.java:155)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:520)
+	at net.minecraft.class_310.<init>(class_310.java:504)
+
+-- Initialization --
+Details:
+	Modules: ~~ERROR~~ LinkageError: loader constraint violation: when resolving interface method 'int com.sun.jna.platform.win32.Version.GetFileVersionInfoSize(java.lang.String, com.sun.jna.ptr.IntByReference)' the class loader net.fabricmc.loader.impl.launch.knot.KnotClassLoader @26be92ad of the current class, net/minecraft/class_6498, and the class loader 'app' for the method's defining class, com/sun/jna/platform/win32/Version, have different Class objects for the type com/sun/jna/ptr/IntByReference used in the signature (net.minecraft.class_6498 is in unnamed module of loader net.fabricmc.loader.impl.launch.knot.KnotClassLoader @26be92ad, parent loader net.fabricmc.loader.impl.launch.knot.KnotClassLoader$DynamicURLClassLoader @1d057a39; com.sun.jna.platform.win32.Version is in unnamed module of loader 'app')
+Stacktrace:
+	at net.minecraft.client.main.Main.main(Main.java:199)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at net.fabricmc.loader.impl.game.minecraft.MinecraftGameProvider.launch(MinecraftGameProvider.java:416)
+	at net.fabricmc.loader.impl.launch.knot.Knot.launch(Knot.java:77)
+	at net.fabricmc.loader.impl.launch.knot.KnotClient.main(KnotClient.java:23)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.multimc.onesix.OneSixLauncher.launchWithMainClass(OneSixLauncher.java:210)
+	at org.multimc.onesix.OneSixLauncher.launch(OneSixLauncher.java:245)
+	at org.multimc.EntryPoint.listen(EntryPoint.java:143)
+	at org.multimc.EntryPoint.main(EntryPoint.java:34)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.18.1
+	Minecraft Version ID: 1.18.1
+	Operating System: Windows 10 (amd64) version 10.0
+	Java Version: 17.0.1, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode, sharing), Oracle Corporation
+	Memory: 3290292224 bytes (3137 MiB) / 5255462912 bytes (5012 MiB) up to 5268045824 bytes (5024 MiB)
+	CPUs: 12
+	Processor Vendor: GenuineIntel
+	Processor Name: Intel(R) Core(TM) i7-8700 CPU @ 3.20GHz
+	Identifier: Intel64 Family 6 Model 158 Stepping 10
+	Microarchitecture: Coffee Lake
+	Frequency (GHz): 3.19
+	Number of physical packages: 1
+	Number of physical CPUs: 6
+	Number of logical CPUs: 12
+	Graphics card #0 name: NVIDIA GeForce GTX 1060 6GB
+	Graphics card #0 vendor: NVIDIA (0x10de)
+	Graphics card #0 VRAM (MB): 4095.00
+	Graphics card #0 deviceId: 0x1c03
+	Graphics card #0 versionInfo: DriverVersion=30.0.14.9729
+	Graphics card #1 name: Parsec Virtual Display Adapter
+	Graphics card #1 vendor: Parsec Cloud, Inc.
+	Graphics card #1 VRAM (MB): 0.00
+	Graphics card #1 deviceId: unknown
+	Graphics card #1 versionInfo: DriverVersion=0.37.0.0
+	Graphics card #2 name: USB Mobile Monitor Virtual Display
+	Graphics card #2 vendor: Amyuni
+	Graphics card #2 VRAM (MB): 0.00
+	Graphics card #2 deviceId: unknown
+	Graphics card #2 versionInfo: DriverVersion=2.0.0.1
+	Memory slot #0 capacity (MB): 8192.00
+	Memory slot #0 clockSpeed (GHz): 2.67
+	Memory slot #0 type: DDR4
+	Virtual memory max (MB): 21371.06
+	Virtual memory used (MB): 13527.76
+	Swap memory total (MB): 13312.00
+	Swap memory used (MB): 742.48
+	JVM Flags: 3 total; -XX:HeapDumpPath=MojangTricksIntelDriversForPerformance_javaw.exe_minecraft.exe.heapdump -Xms5012m -Xmx5024m
+	Fabric Mods: 
 		adorn: Adorn 3.3.1+1.18.1
 		advanced_runtime_resource_pack: Runtime Resource Pack 0.5.4
+		advdebug: Advancements Debug 2.3.0
 		adventurez: AdventureZ 1.4.9
 		amplified_nether: Amplified Nether for Fabric 1.0.1
 		animatica: Animatica 0.4+1.18
@@ -7,8 +137,8 @@
 		architectury: Architectury 3.7.38
 		artifacts: Artifacts 6.0.0+fabric
 		bclib: BCLib 1.3.5
-		bedrockify: BedrockIfy 1.4.0+mc1.18.1
 		bendy-lib: Bendy api 2.0.4
+		besmirchment: Besmirchment 1.18-10
 		betterend: Better End 1.0.3
 		betternether: Better Nether 6.0.11
 		bewitchment: Bewitchment 1.18-15
@@ -20,12 +150,12 @@
 		byg: BYG 1.3.5.13
 		caffeineconfig: CaffeineConfig 1.0.0
 		calio: Calio 1.4.2
-		cardinal-components-base: Cardinal Components API (base) 4.1.0
-		cardinal-components-entity: Cardinal Components API (entities) 4.1.0
-		cem: Custom Entity Models 0.6.2
-		charm: Charm 3.3.2
+		cardinal-components-base: Cardinal Components API (base) 4.1.3
+		cardinal-components-entity: Cardinal Components API (entities) 4.1.3
+		cem: Custom Entity Models 0.7.1
 		chat_heads: Chat Heads 0.6.0
-		citresewn: CITResewn 0.9.0+1.18.1
+		citresewn: CIT Resewn 1.0.1+1.18.2
+		citresewn-defaults: CIT Resewn: Defaults 1.0.1+1.18.2
 		cloth-api: Cloth API 3.1.61
 		cloth-basic-math: cloth-basic-math 0.6.0
 		cloth-client-events-v0: Cloth Client Events v0 3.1.61
@@ -41,22 +171,27 @@
 		com_moandjiezana_toml_toml4j: toml4j 0.7.2
 		com_velocitypowered_velocity-native: velocity-native 1.1.0-SNAPSHOT
 		comforts: Comforts 1.0.3-1.18.1
+		completeconfig: CompleteConfig 1.0.0
 		config2brigadier: Config to Brigadier 1.0.2
-		continuity: Continuity 1.1.0+1.18
+		continuity: Continuity 1.1.0+1.18.2
+		cosmetica: Cosmetica 1.1.0
+		crawl: Crawl 0.10.1
 		creeperoverhaul: Creeper Overhaul 0.3.0
 		crowdin-translate: CrowdinTranslate 1.3+1.17
+		cursormod: Custom Cursor Mod 1.3.1
 		customportalapi: Custom Portal Api 0.0.1-beta49-1.18
 		customspawns: Custom Spawns 0.6+1.18
 		dark-enchanting: Dark Enchanting 0.6.3+1.18
+		darkness: True Darkness 2.0.89
 		dual_riders: DualRiders 1.0.5
 		dynamicfps: Dynamic FPS 2.0.6
 		dynmap: Dynmap 3.3.2
+		ecologics: Ecologics 1.3.0
 		edenring: EdenRing 0.3.0
 		effective: Effective 1.2
 		emotecraft: Emotecraft 2.1
 		enhanced_attack_indicator: Enhanced Attack Indicator 1.0.3+1.18
 		entity_texture_features: Entity Texture Features 2.4.5
-		environmentz: EnvironmentZ 1.2.1
 		expandability: ExpandAbility 5.0.0
 		extraalchemy: Extra Alchemy 1.7.0
 		extraorigins: Extra Origins 1.18-9
@@ -115,19 +250,24 @@
 		fallingleaves: Falling Leaves 1.9.0+1.18.1
 		feature_nbt_deadlock_be_gone: Feature NBT Deadlock Be Gone - Fabric 1.0.1+1.18.1
 		fiber: fiber 0.23.0-2
+		friendsandfoes: Friends&Foes 1.2.5
 		geckolib3: Geckolib 3.0.36
 		go-fish: Go Fish 1.4.1-1.18.1
 		golfiv: Golf IV 0.5.1
 		graveyard: The Graveyard 1.6
+		gud_csl: Custom Shader Lib 1.0.0
 		gud_recipe_confidence: Recipe Confidence 1.0.2
+		haema: Haema 1.9.1+1.18.1
 		icommon: iCommonLib 1.18 1.18
 		illuminations: Illuminations 1.10.2
 		impersonate: Impersonate 2.4.1
 		incubus_core: Incubus Core 1.6.6+1.18.1
+		inmis: Inmis 2.5.1-1.18.1
 		iris: Iris 1.2.0-pre
 		itemscroller: Item Scroller 0.16.0
 		jankson: Jankson 4.0.0+j1.2.0
 		java: Java HotSpot(TM) 64-Bit Server VM 17
+		justenoughkeys: Just Enough Keys 0.5.2
 		kanos_config: Kanos Config 0.1.4+1.14.4-1.17.1
 		krypton: Krypton 0.1.6
 		lambdacontrols: LambdaControls 1.7.1+1.17
@@ -138,9 +278,11 @@
 		libninepatch: LibNinePatch 1.1.0
 		lithium: Lithium 0.7.8
 		malilib: MaLiLib 0.11.8
+		mavm: More Axolotl Variants Mod 1.0.6a
 		midnightlib: MidnightLib 0.3.1
 		minecraft: Minecraft 1.18.1
 		mining_dims: Mining Dimensions 1.3.1
+		mm: Manningham Mills 2.3
 		modmenu: Mod Menu 3.0.1
 		moretags: More Tags 2.0.2
 		morevillagers-fabric: MoreVillagersFabric 3.1.1-SNAPSHOT
@@ -148,7 +290,7 @@
 		no_null_processors: No Null Processors - Fabric 2.0.1+1.18.1
 		notenoughanimations: NotEnoughAnimations 1.5.0
 		notenoughcrashes: Not Enough Crashes 4.1.4+1.18.1
-		omega-config: OmegaConfig 1.2.2-1.18.1
+		omega-config: OmegaConfig 1.2.3-1.18.1
 		org_anarres_jcpp: jcpp 1.4.14
 		org_aperlambda_lambdajcommon: lambdajcommon 1.8.1
 		org_jetbrains_kotlin_kotlin-reflect: kotlin-reflect 1.6.0
@@ -176,7 +318,7 @@
 		respawnablepets: Respawnable Pets 1.18-2
 		roughlyenoughitems: Roughly Enough Items 7.3.443
 		rpg-hud: RPG-Hud 3.9.1
-		satin: Satin 1.7.2
+		satin: Satin 1.7.0
 		secretrooms: Secret Rooms 1.3.0+1.18.1
 		seedfix: Seed Fix 1.0.0
 		sleepwarp: SleepWarp 1.1.0+1.18.1
@@ -184,15 +326,29 @@
 		sodium-extra: Sodium Extra 0.4.0
 		spruceui: SpruceUI 3.3.0+1.17
 		step-height-entity-attribute: Step Height Entity Attribute 1.0.0
+		sulphate: Sulfate 1.0.2
 		team_reborn_energy: Energy 2.2.0
 		techreborn: Tech Reborn 5.1.0
 		terrablender: TerraBlender 1.1.0.77
 		terraform-wood-api-v1: Terraform Wood API (v1) 2.0.2
-		the_aether: Paradise Lost 1.6.8+1.18.1
+		the_aether: Paradise Lost - The Aether Reborn 1.6.5.3+1.18.1
 		the_bumblezone: The Bumblezone - Fabric 4.3.6+1.18.1
 		tpcrosshair: Third Person Crosshair 1.2.1
 		trapexpansion: Trap Expansion 1.3.3
 		trinkets: Trinkets 3.2.1
 		voicechat: Simple Voice Chat 1.18.1-2.2.32
+		waveycapes: WaveyCapes 1.1.2
 		waystones: Waystones 2.4.1
 		worldedit: WorldEdit 7.2.9+e20e013
+		xaeroworldmap: Xaero's World Map 1.20.3.1
+	Launched Version: MultiMC5
+	Backend library: LWJGL version 3.2.2 build 10
+	Backend API: NVIDIA GeForce GTX 1060 6GB/PCIe/SSE2 GL version 3.2.0 NVIDIA 497.29, NVIDIA Corporation
+	Window size: <not initialized>
+	GL Caps: Using framebuffer using OpenGL 3.2
+	GL debug messages: 
+	Using VBOs: Yes
+	Is Modded: Definitely; Client brand changed to 'fabric'
+	Type: Client (map_client.txt)
+	CPU: 12x Intel(R) Core(TM) i7-8700 CPU @ 3.20GHz
+	Suspected Mods: Fabric Loader (fabricloader)
